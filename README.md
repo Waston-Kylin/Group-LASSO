@@ -1,11 +1,15 @@
 # Group LASSO Optimization
 ## Mathematical Model
 本项目求解如下无约束复合凸优化问题：
-$$\min_{X\in\mathbb{R}^{n\times l}}F(X)=\frac{1}{2}\Vert{}AX-b\Vert{}_F^2+\mu\Vert{}X\Vert{}_{1,2}$$
+
+$$
+   \min_ {X\in\mathbb{R}^ {n\times l}}F(X) = \frac{1}{2}\Vert{}AX-b\Vert{}_ F^ 2+\mu\Vert{}X\Vert{}_ {1,2}
+$$
+
 其中：
-* $A\in\mathbb{R}^{m\times n}$ 为给定的测量矩阵，$b\in\mathbb{R}^{m\times l}$ 为观测矩阵，$\mu>0$ 为正则化惩罚系数。
+* $A\in\mathbb{R}^{m\times n}$ 为给定的测量矩阵， $b \in \mathbb{R}^ {m \times l}$ 为观测矩阵， $\mu > 0$ 为正则化惩罚系数。
 * $\Vert{}\cdot\Vert{}_F$ 表示 Frobenius 范数。
-* $\Vert{}X\Vert{}_{1,2} = \sum_{i=1}^n \Vert{}X_{i,:}\Vert{}_2$ 为诱导行稀疏（Group Sparsity）的 $L_{1,2}$ 混合范数。
+* $\Vert{}X\Vert{}_ {1,2} = \sum_{i=1}^n \Vert{}X_ {i,:}\Vert{}_ 2$ 为诱导行稀疏（Group Sparsity）的 $L_{1,2}$ 混合范数。
 
 基准测试（`Test_group_lasso.py`）中，维度设定为 $n=512, m=256, l=2$，真实稀疏度比例为 $k/n =0.1$，正则化系数 $\mu=10^{-2}$。
 
@@ -29,8 +33,6 @@ pip install numpy scipy matplotlib cvxpy Mosek gurobipy
 
 ## License Setup
 前 4 个基准算法调用了 MOSEK 和 Gurobi 商业求解器，运行前须配置合法的许可证。其中 MOSEK 可在 [MOSEK 官网](https://www.mosek.com/) 免费注册，Gurobi 许可证需国外学生验证（没有此 license 代码无法正常运行），可到 [Gurobi 官网](https://www.gurobi.com/) 获取。
-
-**我在文件中将两个 license 放在了 `code` 目录下，烦请不要传播使用。**
 
 主测试脚本 `Test_group_lasso.py` 在顶部通过环境变量自动挂载当前目录下的许可证文件：
 ```python
